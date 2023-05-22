@@ -31,4 +31,11 @@ public class UserService {
     }
 
 
+
+    public String deleteUser(Long id){
+        userRepository.deleteById(id);
+        return "User successfully deleted!";
+    }
+
+
 }

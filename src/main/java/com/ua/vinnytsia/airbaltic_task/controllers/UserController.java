@@ -4,10 +4,7 @@ import com.ua.vinnytsia.airbaltic_task.dto.request.UserDto;
 import com.ua.vinnytsia.airbaltic_task.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -19,8 +16,11 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveUser(@ModelAttribute UserDto userDto){
+    public ResponseEntity<?> saveUser(@ModelAttribute UserDto userDto) {
         return ResponseEntity.ok(userService.saveUser(userDto));
     }
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String>deleteUser(@PathVariable("id") Long userId) {
+        return ResponseEntity.ok(userService.deleteUser(userId));
+    }
 }
